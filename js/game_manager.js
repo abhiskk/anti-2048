@@ -37,7 +37,7 @@ GameManager.prototype.isGameTerminated = function () {
 GameManager.prototype.setup = function () {
   this.grid        = new Grid(this.size);
 
-  this.score       = 0;
+  this.score       = 2048;
   this.over        = false;
   this.won         = false;
   this.keepPlaying = false;
@@ -137,10 +137,10 @@ GameManager.prototype.move = function (direction) {
           tile.updatePosition(positions.next);
 
           // Update the score
-          self.score += merged.value;
+          self.score -= merged.value;
+          if(self.score <= 0)
+              self.over = true; // game lost
 
-          // The mighty 2048 tile  
-          // if (merged.value === 2048) self.won = true;  //keeping the game running
         } else {
           self.moveTile(tile, positions.farthest);
         }
