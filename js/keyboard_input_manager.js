@@ -68,9 +68,9 @@ KeyboardInputManager.prototype.listen = function () {
   retry.addEventListener("click", this.restart.bind(this));
   retry.addEventListener(this.eventTouchend, this.restart.bind(this));
 
-  var keepPlaying = document.querySelector(".keep-playing-button");
-  keepPlaying.addEventListener("click", this.keepPlaying.bind(this));
-  keepPlaying.addEventListener("touchend", this.keepPlaying.bind(this));
+  //var keepPlaying = document.querySelector(".keep-playing-button");
+  //keepPlaying.addEventListener("click", this.keepPlaying.bind(this));
+  //keepPlaying.addEventListener("touchend", this.keepPlaying.bind(this));
 
   // Listen to swipe events
   var touchStartClientX, touchStartClientY;
@@ -124,7 +124,7 @@ KeyboardInputManager.prototype.restart = function (event) {
   this.emit("restart");
 };
 
-KeyboardInputManager.prototype.keepPlaying = function (event) {
-  event.preventDefault();
-  this.emit("keepPlaying");
-};
+//KeyboardInputManager.prototype.keepPlaying = function (event) {
+//  event.preventDefault();
+//  this.emit("keepPlaying");
+//};
