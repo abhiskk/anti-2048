@@ -37,7 +37,7 @@ GameManager.prototype.isGameTerminated = function () {
 GameManager.prototype.setup = function () {
   this.grid        = new Grid(this.size);
 
-  this.score       = 2048;
+  this.score       = 1024;
   this.over        = false;
   this.won         = false;
   this.keepPlaying = false;
@@ -68,7 +68,7 @@ GameManager.prototype.addRandomTile = function () {
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
-  if (this.scoreManager.get() > this.score) {
+  if (this.isGameTerminated() && this.scoreManager.get() < this.score) {
     this.scoreManager.set(this.score);
   }
 
