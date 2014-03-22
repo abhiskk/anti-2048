@@ -26,6 +26,44 @@ Grid.prototype.randomAvailableCell = function () {
   }
 };
 
+// Find the best position to insert a 2 tile
+Grid.prototype.bestAvailaibleCell = function () {
+  var cells = this.availableCells();
+  var counts = [];
+
+  //get a count of number of two's adjacent to each cell
+  //generate the new cell where the number of two's are maximum
+
+  var dx = [-1,1,0,0];
+  var dy = [0,0,-1,1];
+
+  for(var a=0;a<cells.length;a++)
+  {
+    var c = 0;
+    var x = cells[a].x, y = cells[a].y;
+    for(var i=0;i<4;i++)
+    {
+        if( x+dx[i] >= 0 && x+dx[i] < this.size && y+dy[i] >= 0 && y+dy[i] < this.size && this.cells[x+dx[i]][y+dy[i]] != null && this.cells[x+dx[i]][y+dy[i]].value == 2 )
+        {
+          c++;
+        } 
+    }
+    counts.push(c);
+  }
+
+  if (cells.length) {
+    var bestInd = 0;
+    var maxC = counts[0];
+    for(var i=1;i<cells.length;i++)
+      if( counts[i] > maxC )
+      {
+        bestInd = i;
+        maxC = counts[i];
+      } 
+    return cells[bestInd];
+  }
+}
+
 Grid.prototype.availableCells = function () {
   var cells = [];
 
@@ -37,6 +75,10 @@ Grid.prototype.availableCells = function () {
 
   return cells;
 };
+
+Grid.prototype.countCells = function () {
+  var cells = [];
+}
 
 // Call callback for every cell
 Grid.prototype.eachCell = function (callback) {
