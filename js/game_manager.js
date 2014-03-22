@@ -60,7 +60,8 @@ GameManager.prototype.addStartTiles = function () {
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var value = 2;
-    var tile = new Tile(this.grid.randomAvailableCell(), value);
+    // var tile = new Tile(this.grid.randomAvailableCell(), value);
+    var tile = new Tile(this.grid.bestAvailaibleCell(), value);
 
     this.grid.insertTile(tile);
   }
