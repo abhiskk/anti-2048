@@ -55,7 +55,7 @@ Grid.prototype.bestAvailaibleCell = function () {
   if (indices_weighted.length)
     return cells[indices_weighted[Math.floor(Math.random() * indices_weighted.length)]];
   else
-    return cells[0];
+    return cells[Math.floor(Math.random() * cells.length)];
 };
 
 Grid.prototype.availableCells = function () {
