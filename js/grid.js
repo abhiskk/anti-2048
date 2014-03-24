@@ -28,41 +28,35 @@ Grid.prototype.randomAvailableCell = function () {
 
 // Find the best position to insert a 2 tile
 Grid.prototype.bestAvailaibleCell = function () {
+  /* The best available cell is selected randomly from
+   * a list of indices weighted by the number of 2s adjacent to them
+   */
   var cells = this.availableCells();
-  var counts = [];
-
-  //get a count of number of two's adjacent to each cell
-  //generate the new cell where the number of two's are maximum
-
+  var indices_weighted = [];
   var dx = [-1,1,0,0];
   var dy = [0,0,-1,1];
-
-  for(var a=0;a<cells.length;a++)
+  
+  for (var a=0; a<cells.length; a++)
   {
-    var c = 0;
+    var count = 0;
     var x = cells[a].x, y = cells[a].y;
-    for(var i=0;i<4;i++)
-    {
-        if( x+dx[i] >= 0 && x+dx[i] < this.size && y+dy[i] >= 0 && y+dy[i] < this.size && this.cells[x+dx[i]][y+dy[i]] != null && this.cells[x+dx[i]][y+dy[i]].value == 2 )
-        {
-          c++;
-        } 
-    }
-    counts.push(c);
-  }
+    
+    // find the number of 2s adjacent to this cell
+    for (var i=0; i<4; i++)
+      if (x+dx[i] >= 0 && x+dx[i] < this.size && y+dy[i] >= 0 && y+dy[i] < this.size && this.cells[x+dx[i]][y+dy[i]] != null && this.cells[x+dx[i]][y+dy[i]].value == 2)
+        count++;
 
-  if (cells.length) {
-    var bestInd = 0;
-    var maxC = counts[0];
-    for(var i=1;i<cells.length;i++)
-      if( counts[i] > maxC )
-      {
-        bestInd = i;
-        maxC = counts[i];
-      } 
-    return cells[bestInd];
+    // add the index of this cell to 'indices_weighted' as many times as there
+    // are 2s adjacent to it
+    for (var j=0; j<count; j++)
+      indices_weighted.push(a);
   }
-}
+  
+  if (indices_weighted.length)
+    return cells[indices_weighted[Math.floor(Math.random() * indices_weighted.length)]];
+  else
+    return cells[0];
+};
 
 Grid.prototype.availableCells = function () {
   var cells = [];
