@@ -14,6 +14,26 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 
+  <style>
+    #toggle-instructions-button { cursor: pointer; cursor: hand; }
+    .hidden { display: none }
+  </style>
+
+  <script>
+    function toggleInstructionsVisibility() {
+      var instructions = document.getElementById("instructions");  
+      if (instructions.className == "hidden") {
+        instructions.className = '';
+        document.getElementById("toggle-instructions-button").innerHTML = '[-]'
+      }
+      else {
+        instructions.className = 'hidden';
+        document.getElementById("toggle-instructions-button").innerHTML = '[+]'
+      }
+    }
+  </script>
+
+  <!--google analytics-->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -39,8 +59,16 @@
         <div class="score-container">0</div>
         <div class="best-container">0</div>
       </div>
-    </div><br>
-    <p class="game-intro">Fill up the grid such that there are no more moves left!</p>
+    </div>
+    <p class="game-explanation">
+      <strong class="important">INSTRUCTIONS: </strong><span onclick="toggleInstructionsVisibility()" id="toggle-instructions-button">[-]</span>
+      <ul id="instructions">
+        <li>Use your <strong>arrow keys</strong> to move the tiles.</li>
+        <li>When two tiles with the same number (say X) touch, they <strong>merge into one tile</strong> with the number 2X and your <strong>score is reduced</strong> by 2X.</li>
+        <li>You start the game with a score of 512. If your <strong>score goes below 0</strong>, you lose.</li>
+        <li>You win when there are <strong>no more moves left</strong> i.e. when the board is completely filled, <em>and</em> it is not possible to move any tile.</li>
+      </ul>
+    </p>
 
     <div class="game-container">
       <div class="game-message">
@@ -79,14 +107,9 @@
       </div>
 
       <div class="tile-container">
-
       </div>
     </div>
 
-    <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number (say X) touch, they merge into one tile with the number 2X.
-      If your score goes below 0, you lose.
-    </p>
   </div>
 
   <script src="js/animframe_polyfill.js"></script>
