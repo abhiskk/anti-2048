@@ -21,7 +21,7 @@
 
   <script>
     function toggleInstructionsVisibility() {
-      var instructions = document.getElementById("instructions");  
+      var instructions = document.getElementById("instructions");
       if (instructions.className == "hidden") {
         instructions.className = '';
         document.getElementById("toggle-instructions-button").innerHTML = '[-]'
@@ -63,10 +63,6 @@
 
     <div class="heading">
       <h1 class="title">anti-2048</h1>
-      <div class="scores-container">
-        <div class="score-container">0</div>
-        <div class="best-container">0</div>
-      </div>
     </div><br>
 
     <div class="instructions">
@@ -78,6 +74,14 @@
         <li>You win when there are <strong>no more moves left</strong> i.e. when the board is completely filled, <em>and</em> it is not possible to move any tile.</li>
       </ul>
     </div>
+
+    <div class="heading">
+      <!-- <h1 class="title">anti-2048</h1> -->
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div><br>
 
     <div class="game-container">
       <div class="game-message">
@@ -118,11 +122,11 @@
       <div class="tile-container">
       </div>
     </div>
-    
+
     <br><br>
 
     <div class="about">
-      <p>Created by <a href="https://github.com/darkstar112358">Abhishek Kadian</a> and <a href="https://github.com/jayanthkoushik">Jayanth Koushik</a> based on 
+      <p>Created by <a href="https://github.com/darkstar112358">Abhishek Kadian</a> and <a href="https://github.com/jayanthkoushik">Jayanth Koushik</a> based on
       <a href="http://gabrielecirulli.github.io/2048/">2048 by Gabriele Cirulli</a>.</p>
     </div>
 
